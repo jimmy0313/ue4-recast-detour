@@ -6,6 +6,7 @@
 #include "Detour/DetourNavMesh.h"
 #include "Detour/DetourNavMeshQuery.h"
 #include "Detour/DetourNavMeshQuery.h"
+#include "Detour/DetourLargeWorldCoordinates.h"
 #include <math.h>
 #include <inttypes.h>
 #include <vector>
@@ -31,13 +32,13 @@ namespace UE4RecastHelper
 
 	struct FVector3
 	{
-		float X;
-		float Y;
-		float Z;
+		dtReal X;
+		dtReal Y;
+		dtReal Z;
 	public:
 		inline FVector3() :X(0.f), Y(0.f), Z(0.f) {}
-		inline FVector3(float* InV) : X(InV[0]), Y(InV[1]), Z(InV[2]) {}
-		inline FVector3(float px, float py, float pz) : X(px), Y(py), Z(pz) {}
+		inline FVector3(dtReal* InV) : X(InV[0]), Y(InV[1]), Z(InV[2]) {}
+		inline FVector3(dtReal px, dtReal py, dtReal pz) : X(px), Y(py), Z(pz) {}
 		FVector3(const FVector3&) = default;
 
 		inline FVector3 operator-(const FVector3& V) const {
@@ -46,10 +47,10 @@ namespace UE4RecastHelper
 		inline FVector3 operator+(const FVector3& V)const {
 			return FVector3(X + V.X, Y + V.Y, Z + V.Z);
 		}
-		inline FVector3 operator-(const float& V)const {
+		inline FVector3 operator-(const dtReal& V)const {
 			return FVector3(X - V, Y - V, Z - V);
 		}
-		inline FVector3 operator+(const float& V)const {
+		inline FVector3 operator+(const dtReal& V)const {
 			return FVector3(X + V, Y + V, Z + V);
 		}
 		inline FVector3 GetAbs()const
